@@ -7,6 +7,7 @@ import DriftHistorySection from '@/components/DriftHistorySection';
 import DriftDriversSection from '@/components/DriftDriversSection';
 import DriftGallerySection from '@/components/DriftGallerySection';
 import DriftEventsSection from '@/components/DriftEventsSection';
+import DriftTracksMap from '@/components/DriftTracksMap';
 
 export default function Index() {
   return (
@@ -56,7 +57,7 @@ export default function Index() {
 
       <div className="container mx-auto px-4 py-12">
         <Tabs defaultValue="cars" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-8 bg-card/50 backdrop-blur">
+          <TabsList className="grid w-full grid-cols-6 mb-8 bg-card/50 backdrop-blur">
             <TabsTrigger value="cars" className="text-sm md:text-lg font-oswald data-[state=active]:drift-gradient">
               <Icon name="Car" size={20} className="mr-0 md:mr-2" />
               <span className="hidden md:inline">АВТОМОБИЛИ</span>
@@ -76,6 +77,10 @@ export default function Index() {
             <TabsTrigger value="history" className="text-sm md:text-lg font-oswald data-[state=active]:drift-gradient">
               <Icon name="Clock" size={20} className="mr-0 md:mr-2" />
               <span className="hidden md:inline">ИСТОРИЯ</span>
+            </TabsTrigger>
+            <TabsTrigger value="tracks" className="text-sm md:text-lg font-oswald data-[state=active]:drift-gradient">
+              <Icon name="Map" size={20} className="mr-0 md:mr-2" />
+              <span className="hidden md:inline">ТРАССЫ</span>
             </TabsTrigger>
           </TabsList>
 
@@ -97,6 +102,10 @@ export default function Index() {
 
           <TabsContent value="events">
             <DriftEventsSection />
+          </TabsContent>
+
+          <TabsContent value="tracks">
+            <DriftTracksMap />
           </TabsContent>
         </Tabs>
       </div>

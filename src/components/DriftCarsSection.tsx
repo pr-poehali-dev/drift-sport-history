@@ -19,7 +19,7 @@ const driftCars = [
     weight: '1240 кг',
     competitions: ['D1 Grand Prix', 'Formula Drift'],
     videoId: 'pL16uABjFCg',
-    image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/nissan-s15.jpg',
+    image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80',
     description: 'Легендарная S15 - последнее поколение Silvia, идеальная платформа для дрифта благодаря балансу и управляемости.',
   },
   {
@@ -33,7 +33,7 @@ const driftCars = [
     weight: '925 кг',
     competitions: ['D1 Grand Prix', 'Ikaten'],
     videoId: 'N2IWxqvsSY8',
-    image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/ae86.jpg',
+    image: 'https://images.unsplash.com/photo-1552519507-da3ad6b67376?w=800&q=80',
     description: 'Культовая модель, прославленная Кэйити Цутия - "Отцом дрифта". Легкая, маневренная, идеально сбалансированная.',
   },
   {
@@ -47,7 +47,7 @@ const driftCars = [
     weight: '1280 кг',
     competitions: ['D1 Grand Prix', 'Formula Drift'],
     videoId: 'gNdnVVHfseA',
-    image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/rx7-fd.jpg',
+    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
     description: 'RX-7 с роторным двигателем - икона 90-х. Легендарный "Drift King" Танигучи сделал её символом дрифта.',
   },
   {
@@ -61,7 +61,7 @@ const driftCars = [
     weight: '1560 кг',
     competitions: ['Formula Drift', 'King of Europe'],
     videoId: 'fHOek_FXPLo',
-    image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/r34-gtr.jpg',
+    image: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&q=80',
     description: 'R34 GT-R - легенда JDM сцены. Невероятная мощность и потенциал для тюнинга.',
   },
   {
@@ -75,7 +75,7 @@ const driftCars = [
     weight: '1495 кг',
     competitions: ['Formula Drift', 'Drift Masters European Championship'],
     videoId: 'nLwML2PagbY',
-    image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/e46-m3.jpg',
+    image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&q=80',
     description: 'E46 M3 - европейский ответ японским дрифт-карам. Мощный двигатель и превосходная управляемость.',
   },
   {
@@ -89,7 +89,7 @@ const driftCars = [
     weight: '1700 кг',
     competitions: ['Formula Drift', 'Gymkhana'],
     videoId: 'LuDN2bCIyus',
-    image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/mustang-rtr.jpg',
+    image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80',
     description: 'Американский монстр от Вона Гиттина. Огромная мощность V8 и агрессивный стиль дрифта.',
   },
 ];
@@ -172,10 +172,13 @@ export default function DriftCarsSection() {
             className="overflow-hidden hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur border-border/50 group"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
-            <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Icon name="Car" size={64} className="text-muted-foreground/30" />
-              </div>
+            <div className="aspect-video relative overflow-hidden">
+              <img 
+                src={car.image} 
+                alt={car.name}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute top-4 right-4">
                 <Badge className="drift-gradient font-oswald">{car.year}</Badge>
               </div>

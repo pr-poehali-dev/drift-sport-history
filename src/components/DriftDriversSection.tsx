@@ -14,6 +14,7 @@ const driftDrivers = [
     achievements: ['Основатель дрифта как спорта', 'Легенда D1 Grand Prix', 'Mentor для целого поколения'],
     bio: 'Кэйити Цутия - легендарная личность в мире дрифта, известный как "Отец дрифта". Именно он превратил дрифт из уличной техники в настоящее искусство и спорт.',
     videoId: 'N2IWxqvsSY8',
+    photo: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&q=80',
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ const driftDrivers = [
     achievements: ['Чемпион D1 Grand Prix', 'Король роторных двигателей', 'Record Holder Tsukuba'],
     bio: 'Танигучи - мастер роторных Mazda. Его стиль отличается плавностью и техничностью. Один из самых титулованных пилотов D1 Grand Prix.',
     videoId: 'gNdnVVHfseA',
+    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ const driftDrivers = [
     achievements: ['Чемпион Formula Drift', 'Звезда Gymkhana', '5x Formula Drift Champion'],
     bio: 'Вон Гиттин принес американский стиль в дрифт - мощные V8, агрессивная манера вождения. Создатель легендарной серии Mustang RTR.',
     videoId: 'LuDN2bCIyus',
+    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
   },
   {
     id: 4,
@@ -44,6 +47,7 @@ const driftDrivers = [
     achievements: ['3x King of Europe', 'Drift Masters Champion', 'Европейская легенда'],
     bio: 'Норвежский пилот, доминирующий в европейском дрифте. Известен своей точностью и агрессивными углами.',
     videoId: '5qanlirrRWs',
+    photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80',
   },
   {
     id: 5,
@@ -54,6 +58,7 @@ const driftDrivers = [
     achievements: ['Formula Drift Champion', 'D1NZ Champion', 'Red Bull Drifter'],
     bio: 'Новозеландский виртуоз на Silvia S15. Его стиль сочетает японскую точность с западной агрессией.',
     videoId: 'ExN76hAiiFI',
+    photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
   },
 ];
 
@@ -80,8 +85,12 @@ export default function DriftDriversSection() {
           >
             <div className="p-6 space-y-4">
               <div className="flex items-start gap-4">
-                <div className="w-20 h-20 rounded-full drift-gradient flex items-center justify-center flex-shrink-0">
-                  <Icon name="UserCircle" size={48} className="text-white" />
+                <div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0 border-2 border-primary/30">
+                  <img 
+                    src={driver.photo} 
+                    alt={driver.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-2xl font-oswald font-bold group-hover:drift-text-gradient transition-all">

@@ -5,6 +5,8 @@ import Icon from '@/components/ui/icon';
 import DriftCarsSection from '@/components/DriftCarsSection';
 import DriftHistorySection from '@/components/DriftHistorySection';
 import DriftDriversSection from '@/components/DriftDriversSection';
+import DriftGallerySection from '@/components/DriftGallerySection';
+import DriftEventsSection from '@/components/DriftEventsSection';
 
 export default function Index() {
   return (
@@ -54,18 +56,26 @@ export default function Index() {
 
       <div className="container mx-auto px-4 py-12">
         <Tabs defaultValue="cars" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8 bg-card/50 backdrop-blur">
-            <TabsTrigger value="cars" className="text-lg font-oswald data-[state=active]:drift-gradient">
-              <Icon name="Car" size={20} className="mr-2" />
-              АВТОМОБИЛИ
+          <TabsList className="grid w-full grid-cols-5 mb-8 bg-card/50 backdrop-blur">
+            <TabsTrigger value="cars" className="text-sm md:text-lg font-oswald data-[state=active]:drift-gradient">
+              <Icon name="Car" size={20} className="mr-0 md:mr-2" />
+              <span className="hidden md:inline">АВТОМОБИЛИ</span>
             </TabsTrigger>
-            <TabsTrigger value="history" className="text-lg font-oswald data-[state=active]:drift-gradient">
-              <Icon name="Clock" size={20} className="mr-2" />
-              ИСТОРИЯ
+            <TabsTrigger value="drivers" className="text-sm md:text-lg font-oswald data-[state=active]:drift-gradient">
+              <Icon name="Users" size={20} className="mr-0 md:mr-2" />
+              <span className="hidden md:inline">ПИЛОТЫ</span>
             </TabsTrigger>
-            <TabsTrigger value="drivers" className="text-lg font-oswald data-[state=active]:drift-gradient">
-              <Icon name="Users" size={20} className="mr-2" />
-              ПИЛОТЫ
+            <TabsTrigger value="gallery" className="text-sm md:text-lg font-oswald data-[state=active]:drift-gradient">
+              <Icon name="Image" size={20} className="mr-0 md:mr-2" />
+              <span className="hidden md:inline">ГАЛЕРЕЯ</span>
+            </TabsTrigger>
+            <TabsTrigger value="events" className="text-sm md:text-lg font-oswald data-[state=active]:drift-gradient">
+              <Icon name="Calendar" size={20} className="mr-0 md:mr-2" />
+              <span className="hidden md:inline">КАЛЕНДАРЬ</span>
+            </TabsTrigger>
+            <TabsTrigger value="history" className="text-sm md:text-lg font-oswald data-[state=active]:drift-gradient">
+              <Icon name="Clock" size={20} className="mr-0 md:mr-2" />
+              <span className="hidden md:inline">ИСТОРИЯ</span>
             </TabsTrigger>
           </TabsList>
 
@@ -79,6 +89,14 @@ export default function Index() {
 
           <TabsContent value="drivers">
             <DriftDriversSection />
+          </TabsContent>
+
+          <TabsContent value="gallery">
+            <DriftGallerySection />
+          </TabsContent>
+
+          <TabsContent value="events">
+            <DriftEventsSection />
           </TabsContent>
         </Tabs>
       </div>

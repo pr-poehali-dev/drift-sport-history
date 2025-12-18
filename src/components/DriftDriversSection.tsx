@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 const driftDrivers = [
   {
@@ -11,6 +13,7 @@ const driftDrivers = [
     car: 'Toyota AE86 Trueno',
     achievements: ['Основатель дрифта как спорта', 'Легенда D1 Grand Prix', 'Mentor для целого поколения'],
     bio: 'Кэйити Цутия - легендарная личность в мире дрифта, известный как "Отец дрифта". Именно он превратил дрифт из уличной техники в настоящее искусство и спорт.',
+    videoId: 'N2IWxqvsSY8',
   },
   {
     id: 2,
@@ -20,6 +23,7 @@ const driftDrivers = [
     car: 'Mazda RX-7 FD3S',
     achievements: ['Чемпион D1 Grand Prix', 'Король роторных двигателей', 'Record Holder Tsukuba'],
     bio: 'Танигучи - мастер роторных Mazda. Его стиль отличается плавностью и техничностью. Один из самых титулованных пилотов D1 Grand Prix.',
+    videoId: 'gNdnVVHfseA',
   },
   {
     id: 3,
@@ -29,6 +33,7 @@ const driftDrivers = [
     car: 'Ford Mustang RTR',
     achievements: ['Чемпион Formula Drift', 'Звезда Gymkhana', '5x Formula Drift Champion'],
     bio: 'Вон Гиттин принес американский стиль в дрифт - мощные V8, агрессивная манера вождения. Создатель легендарной серии Mustang RTR.',
+    videoId: 'LuDN2bCIyus',
   },
   {
     id: 4,
@@ -38,6 +43,7 @@ const driftDrivers = [
     car: 'BMW E92 M3',
     achievements: ['3x King of Europe', 'Drift Masters Champion', 'Европейская легенда'],
     bio: 'Норвежский пилот, доминирующий в европейском дрифте. Известен своей точностью и агрессивными углами.',
+    videoId: '5qanlirrRWs',
   },
   {
     id: 5,
@@ -47,10 +53,13 @@ const driftDrivers = [
     car: 'Nissan Silvia S15',
     achievements: ['Formula Drift Champion', 'D1NZ Champion', 'Red Bull Drifter'],
     bio: 'Новозеландский виртуоз на Silvia S15. Его стиль сочетает японскую точность с западной агрессией.',
+    videoId: 'ExN76hAiiFI',
   },
 ];
 
 export default function DriftDriversSection() {
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
   return (
     <div className="space-y-6 animate-fade-in">
       <Card className="p-8 bg-card/50 backdrop-blur border-border/50">
@@ -107,7 +116,10 @@ export default function DriftDriversSection() {
                 </div>
               </div>
 
-              <Button className="w-full drift-gradient hover:opacity-90 font-oswald">
+              <Button 
+                className="w-full drift-gradient hover:opacity-90 font-oswald"
+                onClick={() => setSelectedVideo(driver.videoId)}
+              >
                 <Icon name="Play" size={18} className="mr-2" />
                 СМОТРЕТЬ ГОНКИ
               </Button>
@@ -115,6 +127,27 @@ export default function DriftDriversSection() {
           </Card>
         ))}
       </div>
+
+      <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
+        <DialogContent className="max-w-4xl">
+          <DialogHeader>
+            <DialogTitle className="font-oswald text-2xl drift-text-gradient">ДРИФТ ВИДЕО</DialogTitle>
+          </DialogHeader>
+          {selectedVideo && (
+            <div className="aspect-video w-full">
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+                title="Driver Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="rounded-lg"
+              />
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

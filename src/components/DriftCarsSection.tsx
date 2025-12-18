@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 const driftCars = [
   {
@@ -17,7 +18,7 @@ const driftCars = [
     drivetrain: 'Задний привод',
     weight: '1240 кг',
     competitions: ['D1 Grand Prix', 'Formula Drift'],
-    video: 'https://www.youtube.com/watch?v=example1',
+    videoId: 'pL16uABjFCg',
     image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/nissan-s15.jpg',
     description: 'Легендарная S15 - последнее поколение Silvia, идеальная платформа для дрифта благодаря балансу и управляемости.',
   },
@@ -31,7 +32,7 @@ const driftCars = [
     drivetrain: 'Задний привод',
     weight: '925 кг',
     competitions: ['D1 Grand Prix', 'Ikaten'],
-    video: 'https://www.youtube.com/watch?v=example2',
+    videoId: 'N2IWxqvsSY8',
     image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/ae86.jpg',
     description: 'Культовая модель, прославленная Кэйити Цутия - "Отцом дрифта". Легкая, маневренная, идеально сбалансированная.',
   },
@@ -45,7 +46,7 @@ const driftCars = [
     drivetrain: 'Задний привод',
     weight: '1280 кг',
     competitions: ['D1 Grand Prix', 'Formula Drift'],
-    video: 'https://www.youtube.com/watch?v=example3',
+    videoId: 'gNdnVVHfseA',
     image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/rx7-fd.jpg',
     description: 'RX-7 с роторным двигателем - икона 90-х. Легендарный "Drift King" Танигучи сделал её символом дрифта.',
   },
@@ -59,7 +60,7 @@ const driftCars = [
     drivetrain: 'Полный привод (модифицированный на RWD)',
     weight: '1560 кг',
     competitions: ['Formula Drift', 'King of Europe'],
-    video: 'https://www.youtube.com/watch?v=example4',
+    videoId: 'fHOek_FXPLo',
     image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/r34-gtr.jpg',
     description: 'R34 GT-R - легенда JDM сцены. Невероятная мощность и потенциал для тюнинга.',
   },
@@ -73,7 +74,7 @@ const driftCars = [
     drivetrain: 'Задний привод',
     weight: '1495 кг',
     competitions: ['Formula Drift', 'Drift Masters European Championship'],
-    video: 'https://www.youtube.com/watch?v=example5',
+    videoId: 'nLwML2PagbY',
     image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/e46-m3.jpg',
     description: 'E46 M3 - европейский ответ японским дрифт-карам. Мощный двигатель и превосходная управляемость.',
   },
@@ -87,7 +88,7 @@ const driftCars = [
     drivetrain: 'Задний привод',
     weight: '1700 кг',
     competitions: ['Formula Drift', 'Gymkhana'],
-    video: 'https://www.youtube.com/watch?v=example6',
+    videoId: 'LuDN2bCIyus',
     image: 'https://cdn.poehali.dev/projects/d9ab8f0d-5f02-49e5-804b-ec1e77e58cf3/bucket/mustang-rtr.jpg',
     description: 'Американский монстр от Вона Гиттина. Огромная мощность V8 и агрессивный стиль дрифта.',
   },
@@ -97,6 +98,7 @@ export default function DriftCarsSection() {
   const [searchQuery, setSearchQuery] = useState('');
   const [yearFilter, setYearFilter] = useState('all');
   const [competitionFilter, setCompetitionFilter] = useState('all');
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   const filteredCars = driftCars.filter(car => {
     const matchesSearch = car.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -213,7 +215,10 @@ export default function DriftCarsSection() {
                 ))}
               </div>
 
-              <Button className="w-full drift-gradient hover:opacity-90 font-oswald">
+              <Button 
+                className="w-full drift-gradient hover:opacity-90 font-oswald"
+                onClick={() => setSelectedVideo(car.videoId)}
+              >
                 <Icon name="Play" size={18} className="mr-2" />
                 СМОТРЕТЬ ВИДЕО
               </Button>
@@ -221,6 +226,27 @@ export default function DriftCarsSection() {
           </Card>
         ))}
       </div>
+
+      <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
+        <DialogContent className="max-w-4xl">
+          <DialogHeader>
+            <DialogTitle className="font-oswald text-2xl drift-text-gradient">ДРИФТ ВИДЕО</DialogTitle>
+          </DialogHeader>
+          {selectedVideo && (
+            <div className="aspect-video w-full">
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+                title="Drift Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="rounded-lg"
+              />
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
